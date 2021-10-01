@@ -14,6 +14,7 @@ import SingleNews from "../components/SingleNews";
 const Search = () => {
   const {
     news: { articles },
+    darkTheme,
   } = useContext(NewsContext);
   const [searchResults, setSearchResults] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -35,10 +36,14 @@ const Search = () => {
   return (
     <View style={{ width: "100%", position: "relative" }}>
       <TextInput
-        style={{ ...styles.search, backgroundColor: "black", color: "#fff" }}
+        style={{
+          ...styles.search,
+          backgroundColor: darkTheme ? "black" : "lightgrey",
+          color: darkTheme ? "white" : "black",
+        }}
         onChangeText={(text) => handleSearch(text)}
         placeholder="Search for news"
-        placeholderTextColor={"white"}
+        placeholderTextColor={darkTheme ? "white" : "grey"}
       />
 
       <View style={styles.searchResults}>
@@ -51,8 +56,8 @@ const Search = () => {
             <Text
               style={{
                 ...styles.singleResult,
-                backgroundColor: "black",
-                color: "white",
+                backgroundColor: darkTheme ? "black" : "white",
+                color: darkTheme ? "white" : "black",
               }}
             >
               {n.title}
