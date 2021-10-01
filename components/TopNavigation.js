@@ -5,8 +5,11 @@ import {
 } from "@expo/vector-icons";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { NewsContext } from "../API/Context";
 
 const TopNavigation = ({ index, setIndex }) => {
+  const { fetchNews } = useContext(NewsContext);
+
   return (
     <View style={{ ...styles.container, backgroundColor: "#282c35" }}>
       {index === 0 ? (
@@ -35,7 +38,7 @@ const TopNavigation = ({ index, setIndex }) => {
       {index ? (
         <TouchableOpacity
           style={styles.right}
-        //   onPress={() => fetchNews("general")}
+          onPress={() => fetchNews("general")}
         >
           <Text style={styles.text}>
             <AntDesign name="reload1" size={24} color="#007FFF" />
